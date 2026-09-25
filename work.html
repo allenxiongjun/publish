@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+      <meta name="referrer" content="no-referrer">
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>作品详情 · 熊俊</title>
+  <meta name="description" content="熊俊作品详情：活动策划 / 文案策划作品图文与视频。">
+  <link rel="stylesheet" href="assets/css/style.css?v=31">
+  <link rel="stylesheet" href="assets/css/article.css?v=3">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">熊俊<span class="logo-dot">.</span></a>
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="works.html">作品</a>
+        <a href="about.html">关于</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="work-detail">
+    <div class="work-detail-wrap">
+      <a class="btn small" href="works.html">‹ 返回作品列表</a>
+      <div id="wd-head" class="wd-head"></div>
+      <div id="wd-media"></div>
+      <div id="wd-body"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p data-cms="site.footerText">© 2026 熊俊 · 用策划把想法变成现实</p>
+  </footer>
+
+  <script src="assets/js/content.js?v=1"></script>
+  <script>
+  /* 作品详情渲染：读 ?id=，从 SITE_CONTENT 找到对应作品 */
+  (function () {
+    var C = window.SITE_CONTENT;
+    var id = new URLSearchParams(location.search).get('id');
+    var box = document.getElementById('wd-head');
+    var media = document.getElementById('wd-media');
+    var body = document.getElementById('wd-body');
+    var list = (C && C.collections && C.collections.works) || [];
+    var w = null;
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) { w = list[i]; break; }
+
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    function platformLabel(src) {
+      if (!src) return '点击在线观看';
+      if (/\.mp4(\?|$)/i.test(src)) return '点击在线播放';
+      if (/douyin\.com|iesdouyin/i.test(src)) return '点击前往抖音观看';
+      if (/weixin\.qq\.com|channels\.weixin/i.test(src)) return '点击前往视频号观看';
+      if (/bilibili/i.test(src)) return '点击在线观看 · B 站';
+      return '点击在线观看';
+    }
+    if (!w) {
+      box.innerHTML = '<h1 style="margin-top:24px">作品不存在或已下架</h1>';
+      return;
+    }
+    document.title = (w.title || '作品详情') + ' · 熊俊';
+    var md = document.querySelector('meta[name="description"]');
+    if (md && w.desc) md.setAttribute('content', w.desc);
+
+    box.innerHTML =
+      '<div class="wd-meta">' +
+        '<span class="tag">' + esc(w.cat || '') + '</span>' +
+        '<span class="wd-time">' + esc(w.publishedAt || '') + '</span>' +
+        '<span class="wd-views">' + Number(w.views || 0) + ' 次浏览</span>' +
+      '</div>' +
+      '<h1>' + esc(w.title || '未命名作品') + '</h1>' +
+      (w.desc ? '<p class="wd-desc">' + esc(w.desc) + '</p>' : '');
+
+    /* 外链 H5（易企秀等）：iframe 内嵌，100% 保真 */
+    if (w.embedUrl) {
+      media.innerHTML =
+        '<div class="wd-embed-wrap"><iframe src="' + esc(w.embedUrl) + '" loading="lazy" ' +
+        'allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen ' +
+        'referrerpolicy="no-referrer"></iframe>' +
+        '<p class="wd-embed-tip">若内嵌无法显示（部分平台禁止被嵌入），<a target="_blank" rel="noopener" href="' + esc(w.embedUrl) + '">点此在新窗口打开 ↗</a></p></div>';
+    } else if (w.kind === 'video' && w.videoSrc) {
+      media.innerHTML =
+        '<div class="video-slot is-detail">' +
+        '<button class="video-facade" type="button" data-video-src="' + esc(w.videoSrc) + '" aria-label="' + esc(platformLabel(w.videoSrc)) + '：' + esc(w.title) + '">' +
+        (w.cover ? '<img class="facade-img" src="' + esc(w.cover) + '" alt="" loading="lazy">' : '') +
+        '<span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>' +
+        '<span class="facade-txt"><b>' + esc(w.title) + '</b><span>' + esc(platformLabel(w.videoSrc)) + '</span></span>' +
+        '</button></div>';
+    }
+
+    if (w.kind === 'article' && w.content) {
+      body.innerHTML = '<div class="article-body">' + w.content + '</div>';
+      /* 秀米/易企秀图床有 Referer 防盗链：全部图片改为不发送 Referer */
+      body.querySelectorAll('img').forEach(function (im) { im.setAttribute('referrerpolicy', 'no-referrer'); });
+      /* 兜底：未填地址的空视频占位不展示 */
+      body.querySelectorAll('.video-facade[data-video-src=""]').forEach(function (f) {
+        var s = f.closest('.video-slot'); (s || f).remove();
+      });
+    } else if (!w.embedUrl && w.kind !== 'video') {
+      body.innerHTML = '<div class="article-body"><p style="opacity:.4">（正文为空，请在后台编辑）</p></div>';
+    }
+  })();
+  </script>
+  <script>
+  /* 秀米轮换组件交互协调：X 返回 / 照片展开 的视觉层显示控制。
+     SMIL 的返回动画只作用于交互层，视觉层（交替页图片）不随之移动，需 JS 兜底同步。 */
+  (function () {
+    /* 秀米轮换组件：SMIL 动画只作用于交互层，视觉层需 JS 兜底。
+       - 点 X：隐藏当前弹窗页容器（不隐藏内容层，否则透明容器会盖住列表图）
+       - 点照片：恢复上次隐藏的弹窗页容器 + 复位列表层（展开动画把列表 svg 压成 1px，触发区随之错位不可点） */
+    var hidden = null;
+    function findVis(r) {
+      var canvas = r.closest('.xiumi-canvas');
+      if (!canvas) return null;
+      var xr = r.getBoundingClientRect();
+      var vis = canvas.querySelectorAll('svg.alternated-page svg.svg-content');
+      var best = null, bestD = 1e9;
+      vis.forEach(function (v) {
+        var vr = v.getBoundingClientRect();
+        if (vr.width === 0) return;
+        var d = Math.hypot(vr.left - xr.left, vr.top - xr.top);
+        if (d < bestD) { bestD = d; best = v; }
+      });
+      if (!best) return null;
+      var c = best.closest('svg.alternated-page');
+      return c || best;
+    }
+    function resetList(canvas) {
+      var la = canvas.querySelector('svg.alternate-animation-placeholder.non-alternated-page');
+      if (!la) return;
+      la.style.transform = 'none';
+      la.style.height = 'auto';
+      /* 四张照片的触发区父 g 都可能被 SMIL 动画位移，必须全部复位 */
+      var gs = canvas.querySelectorAll('rect[class*="trigger-area-to-show"]');
+      gs.forEach(function (g) { g.parentElement.style.transform = 'none'; });
+    }
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var cx = e.clientX || 0, cy = e.clientY || 0;
+      /* ① 全局 × 区域判定：视觉 × 与触发 rect 错位 + 该位置无 rect 覆盖会穿透到下层，
+         不依赖 e.target，直接遍历画布内所有可见弹窗容器，按真实坐标命中右上角 → 返回 */
+      var canvases = document.querySelectorAll('.xiumi-canvas');
+      var hitPop = null, hitCanvas = null;
+      for (var ci = 0; ci < canvases.length; ci++) {
+        var ccx = canvases[ci];
+        if (getComputedStyle(ccx).display === 'none') continue;
+        var pops = ccx.querySelectorAll('svg.alternated-page');
+        for (var pi = 0; pi < pops.length; pi++) {
+          var pp = pops[pi];
+          if (getComputedStyle(pp).display === 'none') continue;
+          var pr = pp.getBoundingClientRect();
+          if (cx > pr.right - 80 && cx < pr.right + 20 && cy > pr.top - 20 && cy < pr.top + 150) {
+            hitPop = pp; hitCanvas = ccx; break;
+          }
+        }
+        if (hitPop) break;
+      }
+      if (hitPop) {
+        hidden = hitPop;
+        hitPop.style.display = 'none';
+        if (hitCanvas) resetList(hitCanvas);
+        return;
+      }
+      /* ② 弹窗内其它位置 → 保持弹窗不动（不响应列表逻辑） */
+      if (t.closest('svg.alternated-page')) return;
+      /* ③ 列表层：照片展开触发区 */
+      var r = t.closest('rect');
+      if (!r || getComputedStyle(r).pointerEvents === 'none') return;
+      var g = r.parentElement;
+      if (!g || !g.getAttribute) return;
+      /* 秀米触发类名可能挂在 rect 自身或父 g 上，两者都纳入判断 */
+      var cls = ((g.getAttribute('class') || '') + ' ' + (r.getAttribute('class') || '')).trim();
+      if (cls.indexOf('trigger-area-to-hide-alternated-page') >= 0) {
+        var v = r.closest('svg.alternated-page') || findVis(r);
+        if (v) { hidden = v; v.style.display = 'none'; }
+        var c = r.closest('.xiumi-canvas');
+        if (c) resetList(c);   /* 返回时同步复位列表层，否则触发区被 SMIL 压扁错位，下次点照片不可用 */
+      } else if (cls.indexOf('trigger-area-to-show-alternated-page') >= 0) {
+        var canvas = r.closest('.xiumi-canvas');
+        var target = null;
+        /* 第 N 张照片 ↔ 第 N 个弹窗页（DOM 顺序一一对应），不能复用上一张记忆的页 */
+        if (canvas) {
+          var shows = canvas.querySelectorAll('rect[class*="trigger-area-to-show"]');
+          var idx = -1;
+          for (var si = 0; si < shows.length; si++) if (shows[si] === r) { idx = si; break; }
+          var pages = canvas.querySelectorAll('svg.alternated-page');
+          if (idx >= 0 && idx < pages.length) target = pages[idx];
+        }
+        if (!target) target = hidden || findVis(r);
+        if (target) target.style.display = '';
+        if (canvas) resetList(canvas);
+        hidden = null;
+      }
+    }, true);
+  })();
+  </script>
+  <script src="assets/js/main.js?v=37"></script>
+
+  <!-- 分享组件：复制链接 / 微信二维码 / 系统分享 -->
+  <div id="wd-share" class="wd-share" aria-live="polite">
+    <button class="wd-share-btn" type="button" aria-label="分享作品" title="分享作品">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+    </button>
+    <div class="wd-share-panel" hidden>
+      <button type="button" class="wd-share-act" data-share="copy">复制链接</button>
+      <button type="button" class="wd-share-act" data-share="qrcode">二维码 · 微信扫一扫</button>
+      <button type="button" class="wd-share-act" data-share="system" hidden>系统分享</button>
+      <p class="wd-share-tip">微信内也可点右上角「···」直接分享到朋友圈 / 好友</p>
+      <div class="wd-share-qr" hidden>
+        <img id="wd-share-qr-img" alt="分享二维码" width="190" height="190">
+        <p>微信扫一扫打开本作品</p>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var wrap = document.getElementById('wd-share');
+    var btn = wrap.querySelector('.wd-share-btn');
+    var panel = wrap.querySelector('.wd-share-panel');
+    var qrBox = wrap.querySelector('.wd-share-qr');
+    var qrImg = document.getElementById('wd-share-qr-img');
+    var sysBtn = wrap.querySelector('[data-share="system"]');
+    var url = location.href;
+    function toast(msg) {
+      var t = document.createElement('div');
+      t.className = 'wd-share-toast';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(function () { t.classList.add('out'); setTimeout(function () { t.remove(); }, 400); }, 1600);
+    }
+    btn.addEventListener('click', function (e) { e.stopPropagation(); panel.hidden = !panel.hidden; });
+    document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) panel.hidden = true; });
+    wrap.querySelector('[data-share="copy"]').addEventListener('click', function () {
+      var done = function () { toast('链接已复制，去微信粘贴发送即可'); };
+      function fb(t) {
+        var ta = document.createElement('textarea');
+        ta.value = t; ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        ta.remove();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { fb(url); done(); });
+      } else { fb(url); done(); }
+      panel.hidden = true;
+    });
+    wrap.querySelector('[data-share="qrcode"]').addEventListener('click', function () {
+      qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&data=' + encodeURIComponent(url);
+      qrBox.hidden = !qrBox.hidden;
+    });
+    if (navigator.share) {
+      sysBtn.hidden = false;
+      sysBtn.addEventListener('click', function () {
+        navigator.share({ title: document.title, url: url }).catch(function () {});
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

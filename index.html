@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta name="referrer" content="no-referrer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>熊俊 — 活动策划 / 文案策划作品集</title>
+<meta name="description" content="熊俊，11 年美业策划经验：会务统筹、文案宣发、摄影摄像与剪辑、平面设计、新媒体运营，2026 年新增 AI 生图 / 生视频（SD、ComfyUI），方案可视觉化提案。广州，离职随时到岗。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%237c5cff'/><circle cx='50' cy='50' r='22' fill='%2300e5c7'/></svg>">
+<link rel="stylesheet" href="assets/css/style.css?v=31">
+</head>
+<body>
+
+<!-- background -->
+<div class="bg-layer">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+<div class="grid-overlay"></div>
+<canvas id="flow-canvas"></canvas>
+
+<!-- loader -->
+<div class="loader">
+  <div class="loader-inner">
+    <div class="loader-num">00</div>
+    <div class="loader-bar"><i></i></div>
+    <div class="loader-txt">Loading Portfolio</div>
+  </div>
+</div>
+
+<div class="progress"></div>
+<div class="cursor-ring"></div>
+<div class="cursor-dot"></div>
+
+<!-- nav -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html" data-cms-first="site.logoText"><span class="logo-dot"></span>XIONG&nbsp;JUN</a>
+    <nav class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="works.html">作品</a>
+      <a href="about.html">关于</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" data-theme-toggle aria-label="切换明暗主题">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn burger" aria-label="打开菜单">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer">
+  <a href="index.html">首页</a>
+  <a href="works.html">作品</a>
+  <a href="about.html">关于</a>
+  <a href="#contact">联系</a>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="badge reveal" data-cms="home.badge"><span class="pulse"></span> 离职 · 随时到岗 · 广州</div>
+      <h1>
+        <span class="line"><span class="grad-text" data-split data-cms="home.heroTitleA">策划</span></span>
+        <span class="line"><span data-split data-cms="home.heroTitleB">能落地的事</span></span>
+      </h1>
+      <p class="hero-sub reveal" style="--d:120ms" data-cms-html="home.heroSub">
+        我是熊俊 —— 活动策划 / 文案策划。<br>
+        11 年美业一线，从方案到物料到现场，自己能闭环。
+      </p>
+      <p class="lead reveal" style="--d:200ms" data-cms="home.heroLead">
+        会务统筹、文案宣发、拍摄剪辑、平面设计、新媒体运营。一场会从前期的邀约预热，到现场的摄影快剪，再到会后的软文与视频，我一个人能跑完。2026 年又把 AI 生图 / 生视频接了进来，方案可以先出效果图再落地。
+      </p>
+      <div class="btn-row reveal" style="--d:280ms; margin-top:30px">
+        <a class="btn btn-primary magnetic" href="works.html">
+          看看我的作品
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn" href="#contact">聊聊合作</a>
+      </div>
+    </div>
+
+    <div class="hero-card-wrap reveal" style="--d:360ms">
+      <div class="glass hero-card" data-tilt>
+        <div class="avatar"><span>XJ</span><img src="assets/img/avatar.jpg" alt="熊俊个人照片" data-cms-src="home.avatar"></div>
+        <h4 data-cms="home.heroCardName">熊俊 / Xiong Jun</h4>
+        <p data-cms="home.heroCardRole">Event &amp; Copy Planning · 美业</p>
+        <div class="hero-meta">
+          <div><strong data-cms="home.heroMeta.0.num">11</strong><span data-cms="home.heroMeta.0.label">Years</span></div>
+          <div><strong data-cms="home.heroMeta.1.num">06</strong><span data-cms="home.heroMeta.1.label">Career</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><i></i></div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee-track" data-cms-list="marquee">
+    <span class="chip"><em></em>活动策划</span>
+    <span class="chip"><em></em>文案策划</span>
+    <span class="chip"><em></em>会务统筹</span>
+    <span class="chip"><em></em>会议物料设计</span>
+    <span class="chip"><em></em>摄影摄像</span>
+    <span class="chip"><em></em>短视频剪辑</span>
+    <span class="chip"><em></em>平面设计</span>
+    <span class="chip"><em></em>公众号运营</span>
+    <span class="chip"><em></em>朋友圈宣发</span>
+    <span class="chip"><em></em>小程序运营</span>
+    <span class="chip"><em></em>AI 文生图</span>
+    <span class="chip"><em></em>AI 文生视频</span>
+    <span class="chip"><em></em>ComfyUI</span>
+  </div>
+</div>
+
+<!-- ============ ABOUT 预览 ============ -->
+<section>
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow reveal">About</span>
+      <h2 class="reveal" style="--d:80ms" data-cms-first="home.aboutTitleA">把想法<br><span class="grad-text" data-cms="home.aboutTitleB">办成一场会</span></h2>
+      <p class="lead reveal" style="--d:160ms" data-cms="home.aboutLead">
+        我的工作横跨两端：一端是方案与文案，一端是把它真实落到物料、现场和屏幕上。
+        别人还在改 PPT 的时候，我已经把海报、脚本和朋友圈排期写完了。
+      </p>
+      <p class="reveal" style="--d:220ms" data-cms="home.aboutText">
+        11 年都在美业里打转：生物科技、医美器械、美容连锁、咨询教育。全国会、培训会、品牌课程、门店营销活动，整套流程跑过不止一轮。2026 年又把 AI 生图 / 生视频接进了策划流程——方案先出效果图，再落地。
+      </p>
+      <div class="btn-row reveal" style="--d:280ms; margin-top:26px">
+        <a class="btn" href="about.html">完整简历
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div data-stagger data-cms-list="skills">
+      <div class="skill">
+        <strong>活动策划与执行</strong>
+        <div class="skill-bar"><i data-pct="95"></i></div>
+      </div>
+      <div class="skill">
+        <strong>文案撰写与审核</strong>
+        <div class="skill-bar"><i data-pct="92"></i></div>
+      </div>
+      <div class="skill">
+        <strong>会务统筹与物料</strong>
+        <div class="skill-bar"><i data-pct="88"></i></div>
+      </div>
+      <div class="skill">
+        <strong>摄影摄像与剪辑（剪映/PR/FCPX）</strong>
+        <div class="skill-bar"><i data-pct="85"></i></div>
+      </div>
+      <div class="skill">
+        <strong>新媒体（公众号/朋友圈/短视频）</strong>
+        <div class="skill-bar"><i data-pct="86"></i></div>
+      </div>
+      <div class="skill">
+        <strong>AI 生成（SD / ComfyUI · 文生图视频）</strong>
+        <div class="skill-bar"><i data-pct="88"></i></div>
+      </div>
+      <div class="skill">
+        <strong>平面设计（PS）</strong>
+        <div class="skill-bar"><i data-pct="80"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SELECTED WORKS ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow reveal">Selected Works</span>
+        <h2 class="reveal" style="--d:80ms">精选<span class="grad-text">作品</span></h2>
+      </div>
+      <p class="reveal" style="--d:140ms" data-cms="home.worksDesc">从全国会到一条短视频，每一个项目都真的办过、发过、跑过。</p>
+    </div>
+
+    <!-- 编辑式错落画廊：7/5 交替栅格，图文与视频作品混排，按发布时间排序。
+         视频作品 = 点击播放封面（不自动加载播放器），其余与图文卡同构：主图/简介/标签 -->
+    <div class="work-grid works-mosaic" data-stagger data-cms-list="works-featured">
+      <a class="work glass spot" href="works.html" data-cat="video" data-tilt>
+        <div class="work-thumb">
+          <div class="video-slot">
+            <button class="video-facade" type="button"
+                    data-video-src="//player.bilibili.com/player.html?isOutside=true&aid=117324833098860&bvid=BV152aA6nEjL&cid=42158722957&p=1"
+                    aria-label="点击在线观看：药灸视">
+              <span class="play-btn" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+              <span class="facade-txt">
+                <b>药灸视</b>
+                <span>点击在线观看 · B 站</span>
+              </span>
+            </button>
+          </div>
+          <span class="ghost-num" aria-hidden="true">01</span>
+          <span class="tag">Video</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+        <div class="work-body">
+          <h3>药灸视</h3>
+          <p>最新发布的视频作品，点击封面即可在线观看完整版，视频托管在 B 站。</p>
+          <div class="work-tags"><span>视频</span><span>影像</span><span>2026</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="works.html" data-cat="event" data-tilt>
+        <div class="work-thumb">
+          <span class="ghost-num" aria-hidden="true">02</span>
+          <span class="tag">Event</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-01.svg" alt="企业全国会统筹" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>企业全国会统筹</h3>
+          <p>前期邀约预热、会议物料设计、现场摄影宣发、会后软文与视频，整场会务一条龙落地。</p>
+          <div class="work-tags"><span>活动策划</span><span>会务统筹</span><span>2026</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="works.html" data-cat="video" data-tilt>
+        <div class="work-thumb">
+          <span class="ghost-num" aria-hidden="true">03</span>
+          <span class="tag">Video</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-02.svg" alt="产品短视频系列" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>产品短视频系列</h3>
+          <p>产品拍摄、脚本撰写与剪辑宣发，持续为公众号、朋友圈和小程序供片。</p>
+          <div class="work-tags"><span>拍摄</span><span>剪辑</span><span>2025</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="works.html" data-cat="copy" data-tilt>
+        <div class="work-thumb">
+          <span class="ghost-num" aria-hidden="true">04</span>
+          <span class="tag">Content</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-03.svg" alt="公众号内容矩阵" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>公众号内容矩阵</h3>
+          <p>公众号编辑、宣发与维护，配合每日朋友圈节奏，把品牌声音做成日常。</p>
+          <div class="work-tags"><span>文案</span><span>新媒体</span><span>2025</span></div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="btn-row reveal" style="margin-top:34px; justify-content:center">
+      <a class="btn btn-primary" href="works.html" data-cms-first="home.worksBtnText">查看全部 11 个作品
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section>
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow reveal">Experience</span>
+      <h2 class="reveal" style="--d:80ms" data-cms-first="home.expTitleA">走过的<span class="grad-text" data-cms="home.expTitleB">路</span></h2>
+      <p class="lead reveal" style="--d:140ms" data-cms="home.expLead">从美容导师、技术顾问到策划主管，11 年都在美业这一个行业里往上走。</p>
+      <div class="btn-row reveal" style="--d:200ms; margin-top:24px">
+        <a class="btn" href="about.html" data-cms-first="home.expBtnText">完整简历与教育背景
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline" data-stagger data-cms-list="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-year">2026.01 — 2026.06</div>
+        <h3>AI 生成内容专项学习 · 自学 / 实操</h3>
+        <p>系统学习 Stable Diffusion、ComfyUI 与主流在线 AI 生成平台，掌握文生图、文生视频、图生视频。既能用 AI 写文案与策划案，也能把方案直接渲染成可视化效果图和短片。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2019.04 — 2026.01</div>
+        <h3>策划主管 · 广州易艾缘生物科技有限公司</h3>
+        <p>企业全国会与培训会统筹；公众号编辑宣发、每日朋友圈运营；产品拍摄与短视频剪辑；图片设计文案审核；小程序后台维护更新。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2018.08 — 2019.03</div>
+        <h3>总经理助理（企业宣传）· 香港燕姿国际</h3>
+        <p>品牌课程包装与全年推广计划；大型会务全案宣传（邀约、物料、现场视频与摄影、会后软文）；官网优化与百度推广；审核策划部出品。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2017.07 — 2018.08</div>
+        <h3>项目助理 · 美美咨询</h3>
+        <p>深圳分公司课程包装与年度宣传计划；会务课程全案宣传推广；宣传视频制作剪辑；审核策划部文案与海报产出。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2016.05 — 2017.06</div>
+        <h3>美容院运营经理 · 豆蔻容颜高科技美肤中心</h3>
+        <p>客户大数据分析、店内人事与财务管理、项目运营；线上线下推广（美团、大众、百度糯米）；大客户咨询压单与售后。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="glass contact-card reveal">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2 data-cms-first="home.contactTitleA">招人？<br><span class="grad-text" data-cms="home.contactTitleB">聊两句</span></h2>
+          <p class="lead" style="margin-top:16px" data-cms="home.contactLead">广州美业的活动策划 / 文案策划岗位，或者单场会务、品牌推广的合作，都欢迎 —— 方案可以带 AI 视觉化效果图一起提案。</p>
+          <div class="link-row">
+            <a class="btn" href="mailto:361****9@qq.com" data-cms-first="contact.email">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3zM3 7l9 6 9-6"/></svg>
+              361****9@qq.com
+            </a>
+            <a class="btn" href="about.html">完整简历</a>
+            <a class="btn" href="works.html">作品集</a>
+            <button class="btn btn-primary" type="button" id="wechat-btn" data-cms-first="contact.wechatBtnText">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.6c0 3-2.9 5.4-6.5 5.4-.9 0-1.7-.1-2.5-.4L8.2 18l.8-2.7C7.2 14.4 6 13.1 6 11.6 6 8.6 8.9 6.2 12.5 6.2s8.5 2.4 8.5 5.4z"/><path d="M10 10.6h.01M14.5 10.6h.01"/></svg>
+              加微信
+            </button>
+          </div>
+          <p style="margin-top:14px; font-size:14px; opacity:.75" data-cms="home.contactNote">电话 / 微信：188****5140 · 现居广州 · 离职，随时到岗</p>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <div class="field"><input name="name" placeholder="你的名字" autocomplete="name"></div>
+          <div class="field"><input name="email" type="email" placeholder="邮箱" autocomplete="email"></div>
+          <div class="field"><textarea name="message" placeholder="简单说说岗位、项目背景和时间…"></textarea></div>
+          <button class="btn btn-primary" type="submit">
+            发送消息
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap footer">
+  <div data-cms="site.footerText">© 2026 熊俊 · 活动策划 / 文案策划 · 广州</div>
+  <div class="socials">
+    <a class="icon-btn" href="works.html" aria-label="作品"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4v5"/></svg></a>
+    <a class="icon-btn" href="about.html" aria-label="关于"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></a>
+    <a class="icon-btn" href="mailto:361****9@qq.com" aria-label="邮箱"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3zM3 7l9 6 9-6"/></svg></a>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6m0 0-6 6m6-6 6 6"/></svg>
+</button>
+
+<!-- 微信二维码弹层 -->
+<div class="qr-modal" id="qr-modal" aria-hidden="true">
+  <div class="qr-backdrop" data-qr-close></div>
+  <div class="qr-card glass" role="dialog" aria-modal="true" aria-label="微信二维码">
+    <button class="qr-close icon-btn" type="button" data-qr-close aria-label="关闭二维码">
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <span class="eyebrow">WeChat</span>
+    <h3>加个微信</h3>
+    <div class="qr-img">
+      <img src="assets/img/wechat-qr.png" alt="微信二维码：长按识别，或保存图片后用微信扫一扫添加">
+    </div>
+    <p class="qr-hint"><b>长按二维码</b>识别添加 · 或保存图片后用微信「扫一扫」</p>
+  </div>
+</div>
+
+<div class="toast"></div>
+<script src="assets/js/content.js"></script>
+<script src="assets/js/cms-bridge.js?v=25"></script>
+<script src="assets/js/main.js?v=37"></script>
+</body>
+</html>

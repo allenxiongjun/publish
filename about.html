@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta name="referrer" content="no-referrer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于 — 熊俊 Portfolio</title>
+<meta name="description" content="关于熊俊：活动策划 / 文案策划，11 年美业经验，会务统筹、文案宣发、拍摄剪辑、平面设计与新媒体运营；2026 年掌握 SD / ComfyUI 文生图、文生视频、图生视频。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%237c5cff'/><circle cx='50' cy='50' r='22' fill='%2300e5c7'/></svg>">
+<link rel="stylesheet" href="assets/css/style.css?v=31">
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+<div class="grid-overlay"></div>
+<canvas id="flow-canvas"></canvas>
+
+<div class="loader">
+  <div class="loader-inner">
+    <div class="loader-num">00</div>
+    <div class="loader-bar"><i></i></div>
+    <div class="loader-txt">Loading Profile</div>
+  </div>
+</div>
+
+<div class="progress"></div>
+<div class="cursor-ring"></div>
+<div class="cursor-dot"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html" data-cms-first="site.logoText"><span class="logo-dot"></span>XIONG&nbsp;JUN</a>
+    <nav class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="works.html">作品</a>
+      <a href="about.html">关于</a>
+      <a href="index.html#contact">联系</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" data-theme-toggle aria-label="切换明暗主题">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn burger" aria-label="打开菜单">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer">
+  <a href="index.html">首页</a>
+  <a href="works.html">作品</a>
+  <a href="about.html">关于</a>
+  <a href="index.html#contact">联系</a>
+</div>
+
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">About Me</span>
+    <h1 class="reveal" style="--d:60ms" data-cms-first="about.pageHeroTitleA">不止是<span class="grad-text" data-cms="about.pageHeroTitleB">写方案的</span></h1>
+    <p class="lead reveal" style="--d:140ms; margin-top:18px" data-cms="about.pageHeroLead">
+      写文案的身份入场，拍摄剪辑的能力收尾。中间那一段 —— 让一场会真的办起来、真的有人来、真的出片子 —— 是我最熟悉的部分。2026 年又加上了 AI：文生图、文生视频、图生视频，方案可以先看得见再落地。
+    </p>
+  </div>
+</section>
+
+<section style="padding-top:24px">
+  <div class="wrap two-col">
+    <div class="glass reveal" style="padding:0; overflow:hidden" data-tilt>
+      <div class="avatar" style="border-radius:0; aspect-ratio:4/3.4"><span>XJ</span><img src="assets/img/avatar.jpg" alt="熊俊个人照片" data-cms-src="home.avatar"></div>
+    </div>
+    <div class="info-cards" data-stagger data-cms-list="cards">
+      <div class="glass info-card reveal" data-tilt>
+        <span class="ic-num" aria-hidden="true">01</span>
+        <h3>现在在哪</h3>
+        <p>现居广州，户籍永州。35 岁，已婚，目前离职状态，随时可以到岗。</p>
+      </div>
+      <div class="glass info-card reveal" data-tilt>
+        <span class="ic-num" aria-hidden="true">02</span>
+        <h3>求职意向</h3>
+        <p>活动策划 / 文案策划 · 广州 · 美业 · 期望薪资 8001–10000 元。可附带 AI 视觉化提案（效果图 / 短片）。</p>
+      </div>
+      <div class="glass info-card reveal" data-tilt>
+        <span class="ic-num" aria-hidden="true">03</span>
+        <h3>工作方式</h3>
+        <p>方案、物料、拍摄、剪辑、宣发一条龙自己能闭环，不用在几个人之间来回传话。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 基本信息 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow reveal">Profile</span>
+        <h2 class="reveal" style="--d:80ms">基本<span class="grad-text">信息</span></h2>
+      </div>
+    </div>
+    <div class="stats" data-stagger data-cms-list="profile">
+      <div class="glass spot reveal" style="padding:26px 24px">
+        <strong style="display:block; font-size:32px; line-height:1.1">35<small style="font-size:14px; opacity:.6"> 岁</small></strong>
+        <span style="font-size:13.5px; opacity:.7">年龄 · 已婚</span>
+      </div>
+      <div class="glass spot reveal" style="padding:26px 24px">
+        <strong style="display:block; font-size:32px; line-height:1.1">11<small style="font-size:14px; opacity:.6"> 年</small></strong>
+        <span style="font-size:13.5px; opacity:.7">工作年限 · 5 段工作 + AI 专项</span>
+      </div>
+      <div class="glass spot reveal" style="padding:26px 24px">
+        <strong style="display:block; font-size:32px; line-height:1.1">广州</strong>
+        <span style="font-size:13.5px; opacity:.7">现居地 · 户籍永州</span>
+      </div>
+      <div class="glass spot reveal" style="padding:26px 24px">
+        <strong style="display:block; font-size:32px; line-height:1.1">随时</strong>
+        <span style="font-size:13.5px; opacity:.7">离职 · 随时到岗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- services -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow reveal">Services</span>
+        <h2 class="reveal" style="--d:80ms" data-cms-first="about.servicesTitleA">我能帮上<span class="grad-text" data-cms="about.servicesTitleB">什么忙</span></h2>
+      </div>
+    </div>
+    <div class="stats" data-stagger style="grid-template-columns:repeat(3,1fr)" data-cms-list="services">
+      <div class="glass spot reveal" style="padding:30px 26px; text-align:left">
+        <h3 style="margin-bottom:10px">会务策划与执行</h3>
+        <p style="font-size:14.5px">全国会、培训会、品牌课程的统筹：前期邀约、流程编排、现场执行、会后复盘。</p>
+      </div>
+      <div class="glass spot reveal" style="padding:30px 26px; text-align:left">
+        <h3 style="margin-bottom:10px">文案与内容运营</h3>
+        <p style="font-size:14.5px">公众号编辑宣发、每日朋友圈排期、品牌软文、课程包装文案与全年推广计划。</p>
+      </div>
+      <div class="glass spot reveal" style="padding:30px 26px; text-align:left">
+        <h3 style="margin-bottom:10px">视觉与视频产出</h3>
+        <p style="font-size:14.5px">产品与活动摄影摄像、短视频拍摄剪辑、海报与会议物料设计；会用 SD / ComfyUI 做文生图与文生视频，把策划方案先渲染成可视化效果再落地。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- skills -->
+<section style="padding-top:0">
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow reveal">Skills</span>
+      <h2 class="reveal" style="--d:80ms" data-cms="about.skillsTitle">工具箱</h2>
+      <p class="lead reveal" style="--d:140ms; margin-top:16px" data-cms="about.skillsLead">写得了方案，也拍得了片子 —— 策划这条线上的活基本都能自己接住。</p>
+    </div>
+    <div data-stagger data-cms-list="skills">
+      <div class="skill"><strong>活动策划与执行</strong><div class="skill-bar"><i data-pct="95"></i></div></div>
+      <div class="skill"><strong>文案撰写与审核</strong><div class="skill-bar"><i data-pct="92"></i></div></div>
+      <div class="skill"><strong>会务统筹与物料设计</strong><div class="skill-bar"><i data-pct="88"></i></div></div>
+      <div class="skill"><strong>摄影摄像与剪辑（剪映/PR/FCPX）</strong><div class="skill-bar"><i data-pct="85"></i></div></div>
+      <div class="skill"><strong>新媒体（公众号/朋友圈/短视频）</strong><div class="skill-bar"><i data-pct="86"></i></div></div>
+      <div class="skill"><strong>AI 生成（SD / ComfyUI · 文生图视频）</strong><div class="skill-bar"><i data-pct="88"></i></div></div>
+      <div class="skill"><strong>平面设计（PS）</strong><div class="skill-bar"><i data-pct="80"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- timeline -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow reveal">Timeline</span>
+        <h2 class="reveal" style="--d:80ms" data-cms-first="about.timelineTitleA">工作<span class="grad-text" data-cms="about.timelineTitleB">履历</span></h2>
+      </div>
+    </div>
+    <div class="timeline" style="width:min(760px,100%)" data-stagger data-cms-list="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-year">2026.01 — 2026.06</div>
+        <h3>AI 生成内容专项学习 · 自学 / 实操</h3>
+        <p>系统学习 Stable Diffusion、ComfyUI 与主流在线 AI 生成网站，掌握文生图、文生视频、图生视频等技能。不仅可以利用 AI 写文案与策划案，还能把策划方案更加视觉化地展示出来。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2019.04 — 2026.01</div>
+        <h3>策划主管 · 广州易艾缘生物科技有限公司</h3>
+        <p>负责企业全国会与培训会的统筹；公众号的编辑、宣发与维护；每日朋友圈宣发；产品拍摄与短视频拍摄剪辑；图片设计文案的编辑、审核与终审宣发；小程序后台产品上传与维护更新。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2018.08 — 2019.03</div>
+        <h3>总经理助理（企业宣传方向）· 香港燕姿国际</h3>
+        <p>负责霖灏分公司品牌课程包装与全年宣传推广计划；大型会务课程全案宣传（文案、邀约、物料设计、现场朋友圈 / 视频 / 摄影宣传、会后软文与视频剪辑）；官网优化与百度推广；奢品荟项目包装与小程序推广；策划营销活动并审核策划部出品。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2017.07 — 2018.08</div>
+        <h3>项目助理 · 美美咨询</h3>
+        <p>深圳分公司课程包装及年度 / 阶段性宣传计划；大型会务课程的全案宣传推广；宣传视频制作剪辑；审核策划部文案、海报与软文，保障宣传质量与数量。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2016.05 — 2017.06</div>
+        <h3>美容院运营经理 · 广州奇俊 - 豆蔻容颜高科技美肤中心</h3>
+        <p>客户大数据分析（消费能力、消费习惯、到店情况，定制服务项目）；店内人事、财务与项目运营管理；线上线下策划推广（线下广告投放 + 美团 / 大众 / 百度糯米）；大客户咨询顾问压单与售后。</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">2015.07 — 2016.04</div>
+        <h3>培训主管 / 技术顾问 · 广州奇俊医疗器械有限公司</h3>
+        <p>15 年 1 月入职任美容导师，4 月起任售后部主管处理全国仪器售后，9 月转任仪器技术顾问；15 年 12 月 — 16 年 2 月负责新人仪器技术培训与全部培训课件编写更新，后转至分公司欧萨国际负责仪器项目合作。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- education -->
+<section style="padding-top:0">
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow reveal">Education</span>
+      <h2 class="reveal" style="--d:80ms" data-cms-first="about.eduTitleA">教育<span class="grad-text" data-cms="about.eduTitleB">背景</span></h2>
+      <p class="lead reveal" style="--d:140ms; margin-top:16px" data-cms="about.eduLead">财务管理的底子 + 设计与前端的训练，2026 年再补上 AI 生成的系统学习 —— 做策划时算得清账，也做得出东西。</p>
+    </div>
+    <div class="edu-cards" data-stagger data-cms-list="education">
+      <div class="glass edu-card reveal" data-tilt>
+        <span class="edu-year">2011.09 — 2015.06</span>
+        <h3>黑龙江八一农垦大学</h3>
+        <p>本科 · 财务管理</p>
+      </div>
+      <div class="glass edu-card reveal" data-tilt>
+        <span class="edu-year">2015.02 — 2015.07</span>
+        <h3>北京中美设计顾问</h3>
+        <p>职业 UI 设计 + 网页前端</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="glass contact-card reveal" style="text-align:center">
+      <h2 style="margin-bottom:14px">想聊聊？</h2>
+      <p class="lead" style="margin-inline:auto">发封邮件，或者直接填表单，看到就回。广州本地可面谈。</p>
+      <div class="btn-row" style="margin-top:24px; justify-content:center">
+        <a class="btn btn-primary" href="index.html#contact">去联系页
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn" href="works.html">先看作品</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap footer">
+  <div data-cms="site.footerText">© 2026 熊俊 · 活动策划 / 文案策划 · 广州</div>
+  <div class="socials">
+    <a class="icon-btn" href="works.html" aria-label="作品"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4v5"/></svg></a>
+    <a class="icon-btn" href="mailto:361****9@qq.com" aria-label="邮箱"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3zM3 7l9 6 9-6"/></svg></a>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6m0 0-6 6m6-6 6 6"/></svg>
+</button>
+<div class="toast"></div>
+<script src="assets/js/content.js"></script>
+<script src="assets/js/cms-bridge.js?v=25"></script>
+<script src="assets/js/main.js?v=37"></script>
+</body>
+</html>
