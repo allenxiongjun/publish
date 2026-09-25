@@ -110,15 +110,22 @@
   /* 秀米轮换组件交互协调：X 返回 / 照片展开 的视觉层显示控制。
      SMIL 的返回动画只作用于交互层，视觉层（交替页图片）不随之移动，需 JS 兜底同步。 */
   (function () {
-    /* 秀米轮换组件：SMIL 动画只作用于交互层，视觉层需 JS 兜底。
-       - 点 X：隐藏当前弹窗页容器（不隐藏内容层，否则透明容器会盖住列表图）
-       - 点照片：恢复上次隐藏的弹窗页容器 + 复位列表层（展开动画把列表 svg 压成 1px，触发区随之错位不可点） */
+    /* 秀米轮换组件交互协调（增强版）：
+       - 纯 show 型组件（朋友圈图集类，无 trigger-area-to-hide）：JS 完全接管。
+         移除全部 SMIL 动画（SMIL 的 fill/freeze 状态在手机上不还原，会把列表层压扁/位移，
+         CSS 无法覆盖，导致照片第二次点击失效），展开/收起改用 visibility 控制，状态永不残留。
+       - trigger 型组件（work-02 诗词比拼类）：保留原有 display + resetList 逻辑。 */
     var hidden = null;
-    /* 手机修复：秀米 SVG 里有 begin="touchmove" 的 SMIL 动画，
-       手机触摸时轻微滑动就会触发它，把列表层压扁(height=1)导致触发区错位，
-       照片第二次点击就失效。直接移除这类动画，点击交互完全不受影响。 */
+    /* 接管纯 show 型组件 */
     try {
-      document.querySelectorAll('.xiumi-canvas [begin*="touchmove"]').forEach(function (el) { el.remove(); });
+      document.querySelectorAll('.xiumi-canvas').forEach(function (canvas) {
+        var hasHide = canvas.querySelector('rect[class*="trigger-area-to-hide"]');
+        var pops = canvas.querySelectorAll('svg.alternated-page');
+        if (hasHide || !pops.length) return;
+        canvas.querySelectorAll('animate, animateTransform, set').forEach(function (el) { el.remove(); });
+        pops.forEach(function (p) { p.style.visibility = 'hidden'; });
+        canvas.setAttribute('data-js-driven', '1');
+      });
     } catch (e) {}
     function findVis(r) {
       var canvas = r.closest('.xiumi-canvas');
@@ -166,6 +173,7 @@
         for (var pi = 0; pi < pops.length; pi++) {
           var pp = pops[pi];
           if (getComputedStyle(pp).display === 'none') continue;
+          if (getComputedStyle(pp).visibility === 'hidden') continue;
           var pr = pp.getBoundingClientRect();
           if (cx > pr.right - 80 && cx < pr.right + 20 && cy > pr.top - 20 && cy < pr.top + 150) {
             hitPop = pp; hitCanvas = ccx; break;
@@ -175,8 +183,12 @@
       }
       if (hitPop) {
         hidden = hitPop;
-        hitPop.style.display = 'none';
-        if (hitCanvas) resetList(hitCanvas);
+        if (hitCanvas && hitCanvas.getAttribute('data-js-driven') === '1') {
+          hitCanvas.querySelectorAll('svg.alternated-page').forEach(function (p) { p.style.visibility = 'hidden'; p.style.transform = ''; });
+        } else {
+          hitPop.style.display = 'none';
+          if (hitCanvas) resetList(hitCanvas);
+        }
         return;
       }
       /* ② 弹窗内其它位置 → 保持弹窗不动（不响应列表逻辑） */
@@ -189,10 +201,14 @@
       /* 秀米触发类名可能挂在 rect 自身或父 g 上，两者都纳入判断 */
       var cls = ((g.getAttribute('class') || '') + ' ' + (r.getAttribute('class') || '')).trim();
       if (cls.indexOf('trigger-area-to-hide-alternated-page') >= 0) {
-        var v = r.closest('svg.alternated-page') || findVis(r);
-        if (v) { hidden = v; v.style.display = 'none'; }
         var c = r.closest('.xiumi-canvas');
-        if (c) resetList(c);   /* 返回时同步复位列表层，否则触发区被 SMIL 压扁错位，下次点照片不可用 */
+        if (c && c.getAttribute('data-js-driven') === '1') {
+          c.querySelectorAll('svg.alternated-page').forEach(function (p) { p.style.visibility = 'hidden'; p.style.transform = ''; });
+        } else {
+          var v = r.closest('svg.alternated-page') || findVis(r);
+          if (v) { hidden = v; v.style.display = 'none'; }
+          if (c) resetList(c);
+        }
       } else if (cls.indexOf('trigger-area-to-show-alternated-page') >= 0) {
         var canvas = r.closest('.xiumi-canvas');
         var target = null;
@@ -205,9 +221,24 @@
           if (idx >= 0 && idx < pages.length) target = pages[idx];
         }
         if (!target) target = hidden || findVis(r);
-        if (target) target.style.display = '';
-        if (canvas) resetList(canvas);
-        hidden = null;
+        if (canvas && canvas.getAttribute('data-js-driven') === '1') {
+          /* 接管组件：显示目标弹窗页（移到列表层位置），隐藏其它页 */
+          canvas.querySelectorAll('svg.alternated-page').forEach(function (p) { p.style.visibility = 'hidden'; p.style.transform = ''; });
+          if (target) {
+            var anchor = canvas.querySelector('svg.alternate-animation-placeholder') || canvas.querySelector('svg.svg-content') || canvas;
+            var ar = anchor.getBoundingClientRect();
+            var pr2 = target.getBoundingClientRect();
+            if (pr2.width > 0 && (Math.abs(pr2.left - ar.left) > 2 || Math.abs(pr2.top - ar.top) > 2)) {
+              target.style.transform = 'translate(' + (ar.left - pr2.left) + 'px,' + (ar.top - pr2.top) + 'px)';
+            }
+            target.style.visibility = 'visible';
+          }
+          hidden = null;
+        } else {
+          if (target) target.style.display = '';
+          if (canvas) resetList(canvas);
+          hidden = null;
+        }
       }
     }, true);
   })();
