@@ -214,19 +214,31 @@
         <button type="button" class="wd-share-act" data-share="system" hidden>系统分享</button>
       </div>
 
-      <div class="wd-share-qr" hidden>
-        <img id="wd-share-qr-img" alt="分享二维码" width="190" height="190">
-        <p>微信扫一扫打开本作品</p>
-      </div>
     </div>
   </div>
+  <!-- 作品二维码弹层：中央大图，长按识别/保存，点空白退回 -->
+  <div class="qr-modal" id="wd-qr-modal" aria-hidden="true">
+    <div class="qr-backdrop" data-qr-close></div>
+    <div class="qr-card glass" role="dialog" aria-modal="true" aria-label="作品二维码">
+      <button class="qr-close icon-btn" type="button" data-qr-close aria-label="关闭二维码">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <span class="eyebrow">Share</span>
+      <h3>手机扫码 · 打开本作品</h3>
+      <div class="qr-img">
+        <img id="wd-qr-img" alt="作品二维码：长按识别，或保存图片后分享">
+      </div>
+      <p class="qr-hint"><b>长按二维码</b>识别 · 或保存图片后分享</p>
+    </div>
+  </div>
+
   <script>
   (function () {
     var wrap = document.getElementById('wd-share');
     var btn = wrap.querySelector('.wd-share-btn');
     var panel = wrap.querySelector('.wd-share-panel');
-    var qrBox = wrap.querySelector('.wd-share-qr');
-    var qrImg = document.getElementById('wd-share-qr-img');
+    var qrModal = document.getElementById('wd-qr-modal');
+    var qrImg = document.getElementById('wd-qr-img');
     var sysBtn = wrap.querySelector('[data-share="system"]');
     var url = location.href;
     function toast(msg) {
@@ -253,8 +265,22 @@
       panel.hidden = true;
     });
     wrap.querySelector('[data-share="qrcode"]').addEventListener('click', function () {
-      qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&data=' + encodeURIComponent(url);
-      qrBox.hidden = !qrBox.hidden;
+      qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=10&data=' + encodeURIComponent(url);
+      qrModal.classList.add('open');
+      qrModal.setAttribute('aria-hidden', 'false');
+    });
+    /* 关闭：点背景 / 关闭钮 / 卡片空白处（图片本身不关闭，便于长按识别/保存） */
+    qrModal.addEventListener('click', function (e) {
+      if (e.target.closest('[data-qr-close]') || e.target === qrModal || e.target.classList.contains('qr-card')) {
+        qrModal.classList.remove('open');
+        qrModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        qrModal.classList.remove('open');
+        qrModal.setAttribute('aria-hidden', 'true');
+      }
     });
     if (navigator.share) {
       sysBtn.hidden = false;
@@ -264,5 +290,6 @@
     }
   })();
   </script>
+
 </body>
 </html>

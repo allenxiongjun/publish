@@ -1453,18 +1453,6 @@ p:last-child { margin-bottom: 0; }
 /* ---------- 作品详情页 work.html ---------- */
 .work-detail { padding: calc(var(--nav-h) + clamp(28px, 6vh, 56px)) var(--gutter) 60px; }
 .work-detail-wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 22px; }
-.work-detail .wd-back {
-  /* 吸顶：滚动浏览详情时返回按钮悬浮在导航下方，随时返回列表 */
-  position: sticky;
-  top: var(--nav-h-stuck);
-  z-index: 750;
-  align-self: flex-start;
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-  border-color: var(--border-strong);
-  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .35);
-}
 .wd-head h1 { font-size: clamp(24px, 4vw, 36px); letter-spacing: -.02em; margin-top: 12px; }
 .wd-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 13px; opacity: .7; }
 .wd-desc { margin-top: 10px; opacity: .75; }
