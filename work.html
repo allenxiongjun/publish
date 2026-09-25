@@ -114,6 +114,12 @@
        - 点 X：隐藏当前弹窗页容器（不隐藏内容层，否则透明容器会盖住列表图）
        - 点照片：恢复上次隐藏的弹窗页容器 + 复位列表层（展开动画把列表 svg 压成 1px，触发区随之错位不可点） */
     var hidden = null;
+    /* 手机修复：秀米 SVG 里有 begin="touchmove" 的 SMIL 动画，
+       手机触摸时轻微滑动就会触发它，把列表层压扁(height=1)导致触发区错位，
+       照片第二次点击就失效。直接移除这类动画，点击交互完全不受影响。 */
+    try {
+      document.querySelectorAll('.xiumi-canvas [begin*="touchmove"]').forEach(function (el) { el.remove(); });
+    } catch (e) {}
     function findVis(r) {
       var canvas = r.closest('.xiumi-canvas');
       if (!canvas) return null;
@@ -135,9 +141,15 @@
       if (!la) return;
       la.style.transform = 'none';
       la.style.height = 'auto';
+      la.style.opacity = '';
       /* 四张照片的触发区父 g 都可能被 SMIL 动画位移，必须全部复位 */
       var gs = canvas.querySelectorAll('rect[class*="trigger-area-to-show"]');
       gs.forEach(function (g) { g.parentElement.style.transform = 'none'; });
+      /* 弹窗页容器复位：位移/透明度残留一并清掉 */
+      canvas.querySelectorAll('svg.alternated-page').forEach(function (p) {
+        if (p.style.display !== 'none') p.style.transform = '';
+        p.style.opacity = '';
+      });
     }
     document.addEventListener('click', function (e) {
       var t = e.target;
