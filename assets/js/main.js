@@ -281,6 +281,10 @@
   /* ---------------- WeChat QR modal ---------------- */
   const qrModal = $("#qr-modal");
   if (qrModal) {
+    /* 微信二维码图片后台可配置：动态读取，缺省回退静态图 */
+    const qrImg = qrModal.querySelector(".qr-img img");
+    const qrSrc = window.SITE_CONTENT?.contact?.wechatQr;
+    if (qrImg && qrSrc) qrImg.src = qrSrc;
     const setQr = (open) => {
       qrModal.classList.toggle("open", open);
       qrModal.setAttribute("aria-hidden", String(!open));
