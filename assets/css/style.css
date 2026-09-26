@@ -692,7 +692,7 @@ p:last-child { margin-bottom: 0; }
 
 .work-thumb {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 18px;
 }
@@ -1079,7 +1079,7 @@ p:last-child { margin-bottom: 0; }
   padding: 16px;
 }
 .video-ph svg { width: 44px; height: 44px; opacity: .7; }
-/* 作品卡内的视频位：贴合 16:10 缩略图，不再套自身的 16:9 比例 */
+/* 作品卡内的视频位：贴合 16:9 缩略图，不再套自身的 16:9 比例 */
 .work-thumb .video-slot { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
 .work-thumb .video-ph { inset: 0; border: 0; border-radius: 0; gap: 6px; }
 .work-thumb .video-ph svg { width: 38px; height: 38px; }

@@ -12,6 +12,8 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
   }
+  /* 转义后把换行转成 <br>，让后台分段排版在前台保持分段 */
+  function nl2br(s) { return esc(s).replace(/\n/g, '<br>'); }
   function textNodes(el) {
     return Array.prototype.slice.call(el.childNodes).filter(function (n) {
       return n.nodeType === 3 && n.nodeValue.trim() !== '';
@@ -95,7 +97,7 @@
       path: 'collections.timeline',
       build: function (t) {
         return '<div class="tl-item reveal"><div class="tl-year">' + esc(t.year) + '</div>' +
-          '<h3>' + esc(t.title) + '</h3><p>' + esc(t.desc) + '</p></div>';
+          '<h3>' + esc(t.title) + '</h3><p>' + nl2br(t.desc) + '</p></div>';
       },
     },
 
@@ -147,7 +149,7 @@
           '<span class="tag">' + esc(TAG_LABEL[w.cat] || 'Work') + '</span>' +
           '<span class="open">' + OPEN_SVG + '</span>' +
           (w.kind === 'video' ? facade(w) : '<img src="' + esc(w.cover) + '" alt="' + esc(w.title) + '" loading="lazy">');
-        var body = '<div class="work-body"><h3>' + esc(w.title) + '</h3><p>' + esc(w.desc) + '</p>' +
+        var body = '<div class="work-body"><h3>' + esc(w.title) + '</h3><p>' + nl2br(w.desc) + '</p>' +
           '<div class="work-tags">' + tags(w.tags) + '</div></div>';
         var href = 'work.html?id=' + encodeURIComponent(w.id || '');
         return w.kind === 'video'
@@ -177,7 +179,7 @@
         var href = 'work.html?id=' + encodeURIComponent(w.id || '');
         return '<a class="work glass spot" href="' + href + '" data-cat="' + esc(w.cat) + '" data-tilt>' +
           '<div class="work-thumb">' + inner + '</div>' +
-          '<div class="work-body"><h3>' + esc(w.title) + '</h3><p>' + esc(w.desc) + '</p>' +
+          '<div class="work-body"><h3>' + esc(w.title) + '</h3><p>' + nl2br(w.desc) + '</p>' +
           '<div class="work-tags">' + tags(w.tags) + '</div></div></a>';
       },
     },
