@@ -159,7 +159,12 @@
     'works-featured': {
       path: 'collections.works',
       filter: function (arr) {
-        return (arr || []).filter(function (w) { return w.featured && (w.status || 'published') === 'published'; }).slice(0, 4);
+        /* 精选规则：已上架作品中，置顶(featured)优先，其余按发布时间最新自动补足，共 4 个 */
+        var list = (arr || []).filter(function (w) { return (w.status || 'published') === 'published'; });
+        var sorted = list.slice().sort(function (a, b) { return (b.publishedAt || '').localeCompare(a.publishedAt || ''); });
+        var pinned = sorted.filter(function (w) { return w.featured; });
+        var rest = sorted.filter(function (w) { return !w.featured; });
+        return pinned.concat(rest).slice(0, 4);
       },
       build: function (w, i) {
         var n = String(i + 1).padStart(2, '0');
