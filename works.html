@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta name="referrer" content="no-referrer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作品 — 熊俊 Portfolio</title>
+<meta name="description" content="熊俊全部作品：会务策划与执行、文案与内容运营、视觉物料设计、产品与活动视频、AI 生成（文生图 / 文生视频）。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%237c5cff'/><circle cx='50' cy='50' r='22' fill='%2300e5c7'/></svg>">
+<link rel="stylesheet" href="assets/css/style.css?v=37">
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+<div class="grid-overlay"></div>
+<canvas id="flow-canvas"></canvas>
+
+<div class="loader">
+  <div class="loader-inner">
+    <div class="loader-num">00</div>
+    <div class="loader-bar"><i></i></div>
+    <div class="loader-txt">Loading Works</div>
+  </div>
+</div>
+
+<div class="progress"></div>
+<div class="cursor-ring"></div>
+<div class="cursor-dot"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html" data-cms-first="site.logoText"><span class="logo-dot"></span>XIONG&nbsp;JUN</a>
+    <nav class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="works.html">作品</a>
+      <a href="about.html">关于</a>
+      <a href="index.html#contact">联系</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" data-theme-toggle aria-label="切换明暗主题">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn burger" aria-label="打开菜单">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer">
+  <a href="index.html">首页</a>
+  <a href="works.html">作品</a>
+  <a href="about.html">关于</a>
+  <a href="index.html#contact">联系</a>
+</div>
+
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">All Works</span>
+    <h1 class="reveal" style="--d:60ms" data-cms-first="worksPage.pageHeroTitleA">全部<span class="grad-text" data-cms="worksPage.pageHeroTitleB">作品</span></h1>
+    <p class="lead reveal" style="--d:140ms; margin-top:18px" data-cms="worksPage.pageHeroLead">
+      11 个项目，按类型筛。会务、文案、物料、视频、AI 生成，每一类都有真实办过、发过的案例。
+    </p>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="filters reveal">
+      <button class="on" data-filter="all">全部</button>
+      <button data-filter="event">活动策划</button>
+      <button data-filter="copy">文案内容</button>
+      <button data-filter="design">视觉设计</button>
+      <button data-filter="video">视频影像</button>
+      <button data-filter="ai">AI 生成</button>
+    </div>
+
+    <div class="work-grid" data-stagger data-cms-list="works">
+      <!-- ===== 视频作品（B 站）：点击封面才加载播放器，不自动播放 ===== -->
+      <div class="work glass spot" data-cat="video" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Video</span>
+          <div class="video-slot">
+            <button class="video-facade" type="button"
+                    data-video-src="//player.bilibili.com/player.html?isOutside=true&aid=117324833098860&bvid=BV152aA6nEjL&cid=42158722957&p=1"
+                    aria-label="点击在线观看：药灸视">
+              <span class="play-btn" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+              <span class="facade-txt">
+                <b>药灸视</b>
+                <span>点击在线观看 · B 站</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="work-body">
+          <h3>药灸视</h3>
+          <p>点击封面直接在页内播放，视频托管在 B 站。</p>
+          <div class="work-tags"><span>视频</span><span>B 站</span><span>2026</span></div>
+        </div>
+      </div>
+
+      <div class="work glass spot" data-cat="video" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Video</span>
+          <div class="video-slot">
+            <div class="video-ph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z"/></svg>
+              <b>视频标题 02</b>
+              <span>粘贴 B 站 iframe 嵌入代码到此处</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <h3>视频作品标题 02</h3>
+          <p>预留位：后续发布的短视频 / 会务快剪可以直接放进来。</p>
+          <div class="work-tags"><span>视频</span><span>B 站</span><span>2026</span></div>
+        </div>
+      </div>
+
+      <a class="work glass spot" href="#" data-cat="ai" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">AI</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-04.svg" alt="AI 视觉化策划方案" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>AI 视觉化策划方案</h3>
+          <p>用 SD / ComfyUI 做文生图、文生视频与图生视频，把策划案直接渲染成效果图和短片再提案。</p>
+          <div class="work-tags"><span>AI 生成</span><span>ComfyUI</span><span>2026</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="#" data-cat="event" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Event</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-01.svg" alt="企业全国会统筹" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>企业全国会统筹</h3>
+          <p>邀约预热、流程编排、物料设计、现场执行到会后复盘，整场会务一条龙落地。</p>
+          <div class="work-tags"><span>活动策划</span><span>会务统筹</span><span>2026</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="#" data-cat="copy" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Copy</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-02.svg" alt="品牌课程包装与推广" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>品牌课程包装与推广</h3>
+          <p>课程卖点提炼、全年宣传推广计划、公众号软文与朋友圈节奏排期。</p>
+          <div class="work-tags"><span>文案</span><span>品牌包装</span><span>2025</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="#" data-cat="video" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Video</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-03.svg" alt="产品短视频系列" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>产品短视频系列</h3>
+          <p>产品拍摄、脚本撰写与剪辑宣发，为公众号、朋友圈和小程序持续供片。</p>
+          <div class="work-tags"><span>拍摄</span><span>剪辑</span><span>2025</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="#" data-cat="copy" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Content</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-04.svg" alt="公众号内容矩阵" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>公众号内容矩阵</h3>
+          <p>公众号编辑、宣发与维护，配合每日朋友圈节奏，把品牌声音做成日常。</p>
+          <div class="work-tags"><span>新媒体</span><span>公众号</span><span>2025</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="#" data-cat="design" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Design</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-05.svg" alt="会议物料与海报设计" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>会议物料与海报设计</h3>
+          <p>邀约海报、会议手册、现场背板与易拉宝，一套视觉贯穿会前会中会后。</p>
+          <div class="work-tags"><span>平面设计</span><span>物料</span><span>2024</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="#" data-cat="design" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Mini App</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-06.svg" alt="小程序运营与维护" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>小程序运营与维护</h3>
+          <p>后台产品上传、页面更新与推广，配合营销活动做承接落地。</p>
+          <div class="work-tags"><span>小程序</span><span>运营</span><span>2024</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="#" data-cat="event" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Event</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-02.svg" alt="终端门店营销活动策划" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>终端门店营销活动策划</h3>
+          <p>联合异业资源为终端门店设计营销玩法，从方案到物料到执行复盘。</p>
+          <div class="work-tags"><span>活动策划</span><span>营销</span><span>2023</span></div>
+        </div>
+      </a>
+
+      <a class="work glass spot" href="#" data-cat="video" data-tilt>
+        <div class="work-thumb">
+          <span class="tag">Video</span>
+          <span class="open"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <img src="assets/img/work-03.svg" alt="会务现场摄影与快剪" loading="lazy">
+        </div>
+        <div class="work-body">
+          <h3>会务现场摄影与快剪</h3>
+          <p>会议期间的摄影记录与当日快剪成片，会后十分钟内在朋友圈和社群出片。</p>
+          <div class="work-tags"><span>摄影</span><span>快剪</span><span>2023</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="glass contact-card reveal" style="text-align:center">
+      <h2 style="margin-bottom:14px">没找到想要的？</h2>
+      <p class="lead" style="margin-inline:auto">还有不少会务方案、课件和物料没上架，聊聊就知道。</p>
+      <div class="btn-row" style="margin-top:24px; justify-content:center">
+        <a class="btn btn-primary" href="index.html#contact">发起合作
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap footer">
+  <div data-cms="site.footerText">© 2026 熊俊 · 活动策划 / 文案策划 · 广州</div>
+  <div class="socials">
+    <a class="icon-btn" href="about.html" aria-label="关于"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></a>
+    <a class="icon-btn" href="index.html#contact" aria-label="联系"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3zM3 7l9 6 9-6"/></svg></a>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6m0 0-6 6m6-6 6 6"/></svg>
+</button>
+<div class="toast"></div>
+<script src="assets/js/content.js"></script>
+<script src="assets/js/cms-bridge.js?v=25"></script>
+<script src="assets/js/main.js?v=38"></script>
+</body>
+</html>
