@@ -143,7 +143,13 @@
 
     works: {
       path: 'collections.works',
-      filter: function (arr) { return (arr || []).filter(function (w) { return (w.status || 'published') === 'published'; }); },
+      filter: function (arr) {
+        return (arr || []).filter(function (w) { return (w.status || 'published') === 'published'; })
+          .sort(function (a, b) {
+            if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1; /* 置顶优先 */
+            return (b.publishedAt || '').localeCompare(a.publishedAt || ''); /* 发布时间就近 */
+          });
+      },
       build: function (w, i) {
         var inner =
           '<span class="tag">' + esc(TAG_LABEL[w.cat] || 'Work') + '</span>' +
