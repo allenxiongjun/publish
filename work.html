@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>作品详情 · 熊俊</title>
   <meta name="description" content="熊俊作品详情：活动策划 / 文案策划作品图文与视频。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="熊俊作品集">
+<meta property="og:title" content="作品详情 · 熊俊">
+<meta property="og:description" content="熊俊作品详情：活动策划 / 文案策划作品图文与视频。">
+<meta property="og:image" content="https://pub-4e410b25fd2c48cd977f9436121a4e4c.r2.dev/gerenzhan/home-page/ajun-weiixn.png">
+<meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="assets/css/style.css?v=38">
   <link rel="stylesheet" href="assets/css/article.css?v=4">
 </head>
@@ -66,6 +72,12 @@
     document.title = (w.title || '作品详情') + ' · 熊俊';
     var md = document.querySelector('meta[name="description"]');
     if (md && w.desc) md.setAttribute('content', w.desc);
+    var ogT = document.querySelector('meta[property="og:title"]');
+    var ogD = document.querySelector('meta[property="og:description"]');
+    var ogI = document.querySelector('meta[property="og:image"]');
+    if (ogT && w.title) ogT.setAttribute('content', w.title + ' · 熊俊');
+    if (ogD && w.desc) ogD.setAttribute('content', w.desc);
+    if (ogI && w.cover) ogI.setAttribute('content', w.cover);
 
     box.innerHTML =
       '<div class="wd-meta">' +
