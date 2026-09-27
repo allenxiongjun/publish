@@ -402,8 +402,8 @@
         if (glassA) glassA.classList.add("is-playing");
         return;
       }
-      /* mp4 直链：原生 video 直接播，不走 iframe */
-      if (/\.mp4(\?|$)/i.test(src)) {
+      /* mp4 / webm 直链：原生 video 直接播，不走 iframe */
+      if (/\.(mp4|webm|ogg|mov|m4v)(\?|$)/i.test(src)) {
         const v = document.createElement("video");
         v.src = src;
         v.controls = true;
@@ -461,6 +461,35 @@
     document.addEventListener("webkitfullscreenchange", sync);
     slot.appendChild(btn);
   }
+
+  /* ---------------- 编辑器轮播自动播放（data-autoplay="1"） ---------------- */
+  (function initCarouselAutoplay(){
+    function boot(){
+      document.querySelectorAll('.rte-carousel[data-autoplay="1"]').forEach(function(car){
+        if (car.dataset.autoStarted) return;
+        car.dataset.autoStarted = '1';
+        var track = car.querySelector('.t-track');
+        if (!track) return;
+        var imgs = track.children;
+        if (imgs.length < 2) return;
+        var timer = null;
+        function step(){
+          if (document.hidden) return;
+          var i = Math.round(track.scrollLeft / track.clientWidth);
+          var next = (i + 1) % imgs.length;
+          imgs[next].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        }
+        function start(){ if (!reduceMotion && !timer) timer = setInterval(step, 3000); }
+        function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+        car.addEventListener('mouseenter', stop);
+        car.addEventListener('mouseleave', start);
+        document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+        start();
+      });
+    }
+    if (document.readyState === 'complete' || document.readyState === 'interactive') setTimeout(boot, 300);
+    else window.addEventListener('DOMContentLoaded', function(){ setTimeout(boot, 300); });
+  })();
 
   /* ---------------- Boot ---------------- */
   window.addEventListener("load", () => runLoader());

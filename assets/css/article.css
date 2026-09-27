@@ -91,3 +91,18 @@
   border-radius: 12px; display: block;
 }
 .rte-carousel .t-hint { text-align: center; font-size: 12.5px; color: #999; margin: 8px 0 0; }
+
+
+/* 入场动画系统：编辑态不隐藏；预览/前台容器 .anim-stage 触发（滚动进入视口播放） */
+.anim-stage [data-anim]{ opacity:0; }
+.anim-stage [data-anim].anim-play{ animation: var(--an, anim-fade 1s ease both); opacity:1; }
+@keyframes anim-fade{from{opacity:0}to{opacity:1}}
+@keyframes anim-up{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+@keyframes anim-down{from{opacity:0;transform:translateY(-46px)}to{opacity:1;transform:none}}
+@keyframes anim-left{from{opacity:0;transform:translateX(70px)}to{opacity:1;transform:none}}
+@keyframes anim-right{from{opacity:0;transform:translateX(-70px)}to{opacity:1;transform:none}}
+@keyframes anim-zoom{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}
+@keyframes anim-bounce{0%{opacity:0;transform:translateY(70px)}55%{opacity:1;transform:translateY(-14px)}75%{transform:translateY(5px)}100%{opacity:1;transform:none}}
+@keyframes anim-flip{from{opacity:0;transform:perspective(640px) rotateX(70deg)}to{opacity:1;transform:none}}
+@keyframes anim-blur{from{opacity:0;filter:blur(14px)}to{opacity:1;filter:none}}
+@keyframes anim-rotate{from{opacity:0;transform:rotate(-45deg) scale(.8)}to{opacity:1;transform:none}}

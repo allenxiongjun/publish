@@ -7,7 +7,7 @@
   <title>作品详情 · 熊俊</title>
   <meta name="description" content="熊俊作品详情：活动策划 / 文案策划作品图文与视频。">
   <link rel="stylesheet" href="assets/css/style.css?v=38">
-  <link rel="stylesheet" href="assets/css/article.css?v=3">
+  <link rel="stylesheet" href="assets/css/article.css?v=4">
 </head>
 <body>
   <header class="nav">
@@ -94,7 +94,7 @@
     }
 
     if (w.kind === 'article' && w.content) {
-      body.innerHTML = '<div class="article-body">' + w.content + '</div>';
+      body.innerHTML = '<div class="article-body anim-stage">' + w.content + '</div>';
       /* 秀米/易企秀图床有 Referer 防盗链：全部图片改为不发送 Referer */
       body.querySelectorAll('img').forEach(function (im) { im.setAttribute('referrerpolicy', 'no-referrer'); });
       /* 兜底：未填地址的空视频占位不展示 */
@@ -104,6 +104,32 @@
     } else if (!w.embedUrl && w.kind !== 'video') {
       body.innerHTML = '<div class="article-body"><p style="opacity:.4">（正文为空，请在后台编辑）</p></div>';
     }
+    /* 入场动画播放引擎（与编辑器预览同一套逻辑）：滚动进入视口 → 播放 */
+    (function () {
+      var els = body.querySelectorAll('[data-anim]');
+      if (!els.length) return;
+      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('anim-play'); }); return; }
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (en) {
+          if (en.isIntersecting) {
+            var el = en.target;
+            el.style.setProperty('--an', 'anim-' + el.getAttribute('data-anim') + ' ' + (el.getAttribute('data-dur') || '1s') + ' ease both');
+            el.classList.add('anim-play');
+            io.unobserve(el);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+    /* 点击带动画的组件可重播（秀米式交互） */
+    body.addEventListener('click', function (e) {
+      var an = e.target && e.target.closest ? e.target.closest('[data-anim]') : null;
+      if (an && an.classList.contains('anim-play')) {
+        an.classList.remove('anim-play');
+        void an.offsetWidth;
+        an.classList.add('anim-play');
+      }
+    });
   })();
   </script>
   <script>
@@ -243,7 +269,7 @@
     }, true);
   })();
   </script>
-  <script src="assets/js/main.js?v=38"></script>
+  <script src="assets/js/main.js?v=39"></script>
 
   <!-- 分享组件：复制链接 / 微信二维码 / 系统分享 -->
   <div id="wd-share" class="wd-share" aria-live="polite">
