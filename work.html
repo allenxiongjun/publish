@@ -321,7 +321,8 @@
     var qrModal = document.getElementById('wd-qr-modal');
     var qrImg = document.getElementById('wd-qr-img');
     var sysBtn = wrap.querySelector('[data-share="system"]');
-    var url = location.href;
+    var _id = new URLSearchParams(location.search).get('id');
+    var url = _id ? location.origin + '/share/' + encodeURIComponent(_id) + '.html' : location.href;
     function toast(msg) {
       var t = document.createElement('div');
       t.className = 'wd-share-toast';
