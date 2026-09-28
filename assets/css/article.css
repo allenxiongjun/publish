@@ -124,6 +124,8 @@
   /* 手机端：grid 简化为普通流式布局，宽度强制100%，杜绝子项被内容撑宽导致横向偏移/溢出 */
   .work-detail-wrap { display: block; width: 100% !important; max-width: 100% !important; margin: 0 auto; }
   .work-detail-wrap > * { min-width: 0; }
+  /* grid gap 失效后补间距：简介与正文之间留出呼吸空间 */
+  .wd-desc { margin-bottom: 26px; }
   .article-body .wechat-canvas,
   .article-body .xiumi-canvas {
     zoom: calc(100vw / 750);
