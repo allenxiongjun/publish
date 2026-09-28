@@ -13,7 +13,7 @@
   const root = document.documentElement;
   const stored = localStorage.getItem("gm-theme");
   if (stored) root.dataset.theme = stored;
-  else if (window.matchMedia("(prefers-color-scheme: light)").matches) root.dataset.theme = "light";
+  else root.dataset.theme = "light";
 
   $$("[data-theme-toggle]").forEach((btn) => {
     btn.addEventListener("click", () => {
