@@ -50,6 +50,8 @@
   var PLAY_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>';
   var OPEN_SVG = '<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
   var TAG_LABEL = { event: 'Event', copy: 'Copy', design: 'Design', video: 'Video', ai: 'AI' };
+  // 作品可多分类：优先 w.cats，旧数据回退 w.cat
+  function catsOf(w) { return (w.cats && w.cats.length) ? w.cats : (w.cat ? [w.cat] : []); }
   // 分类改为后台可增删：content.js 顶层 categories = [{key,label,en?}]
   var CATS = Array.isArray(C.categories) ? C.categories.filter(function (c) { return c && c.key && c.label; }) : [];
   CATS.forEach(function (c) { TAG_LABEL[c.key] = c.en || c.label; });
@@ -151,16 +153,17 @@
           });
       },
       build: function (w, i) {
+        var wc = catsOf(w);
         var inner =
-          '<span class="tag">' + esc(TAG_LABEL[w.cat] || 'Work') + '</span>' +
+          '<span class="tag">' + esc(TAG_LABEL[wc[0]] || 'Work') + '</span>' +
           '<span class="open">' + OPEN_SVG + '</span>' +
           (w.kind === 'video' ? facade(w) : '<img src="' + esc(w.cover) + '" alt="' + esc(w.title) + '" loading="lazy">');
         var body = '<div class="work-body"><h3>' + esc(w.title) + '</h3><p>' + nl2br(w.desc) + '</p>' +
           '<div class="work-tags">' + tags(w.tags) + '</div></div>';
         var href = 'work.html?id=' + encodeURIComponent(w.id || '');
         return w.kind === 'video'
-          ? '<div class="work glass spot" data-cat="' + esc(w.cat) + '" data-tilt><div class="work-thumb">' + inner + '</div>' + body + '</div>'
-          : '<a class="work glass spot" href="' + href + '" data-cat="' + esc(w.cat) + '" data-tilt><div class="work-thumb">' + inner + '</div>' + body + '</a>';
+          ? '<div class="work glass spot" data-cat="' + esc(wc[0] || '') + '" data-cats="' + esc(wc.join(' ')) + '" data-tilt><div class="work-thumb">' + inner + '</div>' + body + '</div>'
+          : '<a class="work glass spot" href="' + href + '" data-cat="' + esc(wc[0] || '') + '" data-cats="' + esc(wc.join(' ')) + '" data-tilt><div class="work-thumb">' + inner + '</div>' + body + '</a>';
       },
     },
 
@@ -176,14 +179,15 @@
       },
       build: function (w, i) {
         var n = String(i + 1).padStart(2, '0');
+        var wc = catsOf(w);
         var inner =
           (w.kind === 'video' ? facade(w) : '') +
           '<span class="ghost-num" aria-hidden="true">' + n + '</span>' +
-          '<span class="tag">' + esc(TAG_LABEL[w.cat] || 'Work') + '</span>' +
+          '<span class="tag">' + esc(TAG_LABEL[wc[0]] || 'Work') + '</span>' +
           '<span class="open">' + OPEN_SVG + '</span>' +
           (w.kind === 'video' ? '' : '<img src="' + esc(w.cover) + '" alt="' + esc(w.title) + '" loading="lazy">');
         var href = 'work.html?id=' + encodeURIComponent(w.id || '');
-        return '<a class="work glass spot" href="' + href + '" data-cat="' + esc(w.cat) + '" data-tilt>' +
+        return '<a class="work glass spot" href="' + href + '" data-cat="' + esc(wc[0] || '') + '" data-cats="' + esc(wc.join(' ')) + '" data-tilt>' +
           '<div class="work-thumb">' + inner + '</div>' +
           '<div class="work-body"><h3>' + esc(w.title) + '</h3><p>' + nl2br(w.desc) + '</p>' +
           '<div class="work-tags">' + tags(w.tags) + '</div></div></a>';

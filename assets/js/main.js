@@ -232,7 +232,8 @@
       const cat = btn.dataset.filter;
       filterBtns.forEach((b) => b.classList.toggle("on", b === btn));
       works.forEach((w) => {
-        const match = cat === "all" || w.dataset.cat === cat;
+        const cats = (w.dataset.cats || w.dataset.cat || "").split(/\s+/).filter(Boolean);
+        const match = cat === "all" || cats.includes(cat);
         if (match) {
           w.classList.remove("hide");
           w.classList.add("reveal");
