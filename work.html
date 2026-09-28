@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
+<script>(function(){try{var t=localStorage.getItem("gm-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.dataset.theme=t;}catch(e){}})();</script>
       <meta name="referrer" content="no-referrer">
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,14 +19,30 @@
 <body>
   <header class="nav">
     <div class="nav-inner">
-      <a class="logo" href="index.html">熊俊<span class="logo-dot">.</span></a>
+      <a class="logo" href="index.html" data-cms-first="site.logoText"><span class="logo-dot"></span>XIONG&nbsp;JUN</a>
       <nav class="nav-links">
         <a href="index.html">首页</a>
         <a href="works.html">作品</a>
         <a href="about.html">关于</a>
+        <a href="index.html#contact">联系</a>
       </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" data-theme-toggle aria-label="切换明暗主题">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn burger" aria-label="打开菜单">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
+
+  <div class="drawer">
+    <a href="index.html">首页</a>
+    <a href="works.html">作品</a>
+    <a href="about.html">关于</a>
+    <a href="index.html#contact">联系</a>
+  </div>
 
   <main class="work-detail">
     <div class="work-detail-wrap">
