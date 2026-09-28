@@ -435,6 +435,17 @@
       slot.appendChild(frame);
   });
 
+  /* 作品卡分区点击：视频卡（data-href 的 div 卡片）——
+     封面区由上方 video-facade 点击播放处理（stopPropagation 不冒泡），
+     标题/简介内容区点击则进入作品详情页。 */
+  document.addEventListener("click", (e) => {
+    const body = e.target.closest(".work[data-href] .work-body");
+    if (!body) return;
+    const card = body.closest(".work");
+    const href = card && card.getAttribute("data-href");
+    if (href) window.location.href = href;
+  });
+
   /* 本站自控的全屏按钮：让自己的容器进全屏，绕过跨域 iframe 的权限限制 */
   function addFullscreenButton(slot) {
     const api = slot.requestFullscreen || slot.webkitRequestFullscreen || slot.msRequestFullscreen;

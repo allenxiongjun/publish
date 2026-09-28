@@ -162,7 +162,7 @@
           '<div class="work-tags">' + tags(w.tags) + '</div></div>';
         var href = 'work.html?id=' + encodeURIComponent(w.id || '');
         return w.kind === 'video'
-          ? '<div class="work glass spot" data-cat="' + esc(wc[0] || '') + '" data-cats="' + esc(wc.join(' ')) + '" data-tilt><div class="work-thumb">' + inner + '</div>' + body + '</div>'
+          ? '<div class="work glass spot" data-cat="' + esc(wc[0] || '') + '" data-cats="' + esc(wc.join(' ')) + '" data-href="' + href + '" data-tilt><div class="work-thumb">' + inner + '</div>' + body + '</div>'
           : '<a class="work glass spot" href="' + href + '" data-cat="' + esc(wc[0] || '') + '" data-cats="' + esc(wc.join(' ')) + '" data-tilt><div class="work-thumb">' + inner + '</div>' + body + '</a>';
       },
     },
