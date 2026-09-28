@@ -117,9 +117,17 @@
   transform-origin: top center;
 }
 @media (max-width: 750px) {
+  /* 手机端：清空外层内边距（秀米画布自带内边距），画布 zoom 后宽度=屏幕宽，全宽居中、
+     无横向溢出、无裁切——与微信公众号/秀米手机预览效果一致 */
+  .work-detail { padding-left: 0; padding-right: 0; }
+  .article-body { padding: 0; }
+  /* 手机端：grid 简化为普通流式布局，宽度强制100%，杜绝子项被内容撑宽导致横向偏移/溢出 */
+  .work-detail-wrap { display: block; width: 100% !important; max-width: 100% !important; margin: 0 auto; }
+  .work-detail-wrap > * { min-width: 0; }
   .article-body .wechat-canvas,
   .article-body .xiumi-canvas {
     zoom: calc(100vw / 750);
+    margin: 0 auto;
   }
 }
 
