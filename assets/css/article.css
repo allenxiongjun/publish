@@ -121,3 +121,6 @@
     transform: scale(calc(100vw / 750));
   }
 }
+
+/* 手机端防横向溢出（画布缩放 + 高度/宽度补偿兜底） */
+.article-body { overflow-x: hidden; }

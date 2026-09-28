@@ -55,8 +55,10 @@
         cv.style.transform = 'scale(' + k + ')';
         cv.style.transformOrigin = 'top center';
         var ph = cv.parentNode;
+        ph.style.width = Math.round(750 * k) + 'px';
         ph.style.height = Math.round(cv.offsetHeight * k) + 'px';
         ph.style.position = 'relative';
+        ph.style.margin = '0 auto';
       });
     }
     window.addEventListener('load', fitCanvas);
@@ -401,5 +403,6 @@
   })();
   </script>
 
+  <style>body { overflow-x: hidden; }</style>
 </body>
 </html>
