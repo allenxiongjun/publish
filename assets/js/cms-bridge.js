@@ -28,6 +28,14 @@
   /* ---- 单值字段 ---- */
   document.querySelectorAll('[data-cms]').forEach(function (el) { setText(el, get(el.dataset.cms)); });
   document.querySelectorAll('[data-cms-first]').forEach(function (el) { setFirst(el, get(el.dataset.cmsFirst)); });
+  // 「查看全部 N 个作品」按钮：N 始终 = 实际上架作品总数（后台文案中的数字被动态替换）
+  document.querySelectorAll('[data-cms-first="home.worksBtnText"]').forEach(function (el) {
+    var worksArr = (C.collections && C.collections.works) || [];
+    var cnt = worksArr.filter(function (w) { return (w.status || 'published') === 'published'; }).length;
+    var v = get('home.worksBtnText');
+    if (v == null || v === '' || !cnt) return;
+    setFirst(el, String(v).replace(/\d+/, String(cnt)));
+  });
   document.querySelectorAll('[data-cms-html]').forEach(function (el) {
       var v = get(el.dataset.cmsHtml);
       if (v != null && v !== '') el.innerHTML = String(v).replace(/\n/g, '<br>');
