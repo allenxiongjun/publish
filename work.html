@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://pub-4e410b25fd2c48cd977f9436121a4e4c.r2.dev/gerenzhan/home-page/ajun-weiixn.png">
 <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="assets/css/style.css?v=41">
-  <link rel="stylesheet" href="assets/css/article.css?v=4">
+  <link rel="stylesheet" href="assets/css/article.css?v=5">
 </head>
 <body>
   <header class="nav">
@@ -41,6 +41,32 @@
   </footer>
 
   <script src="assets/js/content.js?v=1"></script>
+  <script>
+  /* 750px 秀米画布手机等比缩放高度补偿：transform:scale 不改变文档流占位高度，
+     缩放后父容器高度同步缩小，避免手机端底部大面积空白。 */
+  (function () {
+    function fitCanvas() {
+      var canvases = document.querySelectorAll('.article-body .wechat-canvas, .article-body .xiumi-canvas');
+      if (!canvases.length) return;
+      var avail = Math.min(750, (window.innerWidth || 750) - 24);
+      var k = avail / 750;
+      canvases.forEach(function (cv) {
+        cv.style.width = '750px';
+        cv.style.transform = 'scale(' + k + ')';
+        cv.style.transformOrigin = 'top center';
+        var ph = cv.parentNode;
+        ph.style.height = Math.round(cv.offsetHeight * k) + 'px';
+        ph.style.position = 'relative';
+      });
+    }
+    window.addEventListener('load', fitCanvas);
+    window.addEventListener('resize', fitCanvas);
+    /* 正文由 JS 渲染（work.html 读 SITE_CONTENT 注入），渲染完成后执行一次 */
+    setTimeout(fitCanvas, 800);
+    setTimeout(fitCanvas, 2000);
+  })();
+  </script>
+
   <script>
   /* 作品详情渲染：读 ?id=，从 SITE_CONTENT 找到对应作品 */
   (function () {
