@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://pub-4e410b25fd2c48cd977f9436121a4e4c.r2.dev/gerenzhan/home-page/ajun-weiixn.png">
 <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="assets/css/style.css?v=42">
-  <link rel="stylesheet" href="assets/css/article.css?v=16">
+  <link rel="stylesheet" href="assets/css/article.css?v=18">
 </head>
 <body>
   <header class="nav">
@@ -75,9 +75,11 @@
       var avail = vw;
       var wd = document.querySelector('.work-detail');
       if (wd && wd.clientWidth) avail = wd.clientWidth;
-      var k = Math.min(1, avail / 750);
+      /* 标准图文画布：秀米 640px / 历史 750px 都按自身宽度等比缩放，
+         手机小屏缩到全宽（与秀米/微信预览一致），大屏保持原始宽度居中留白 */
+      var cw = parseFloat(canvases[0].style.width) || parseFloat(canvases[0].getAttribute('width')) || 750;
+      var k = Math.min(1, avail / cw);
       canvases.forEach(function (cv) {
-        cv.style.width = '750px';
         cv.style.zoom = k;
         cv.style.transform = 'none';
         cv.style.transformOrigin = 'top center';
