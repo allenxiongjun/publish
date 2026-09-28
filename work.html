@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://pub-4e410b25fd2c48cd977f9436121a4e4c.r2.dev/gerenzhan/home-page/ajun-weiixn.png">
 <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="assets/css/style.css?v=41">
-  <link rel="stylesheet" href="assets/css/article.css?v=5">
+  <link rel="stylesheet" href="assets/css/article.css?v=6">
 </head>
 <body>
   <header class="nav">
@@ -48,17 +48,13 @@
     function fitCanvas() {
       var canvases = document.querySelectorAll('.article-body .wechat-canvas, .article-body .xiumi-canvas');
       if (!canvases.length) return;
-      var avail = Math.min(750, (window.innerWidth || 750) - 24);
-      var k = avail / 750;
+      var k = Math.min(1, (window.innerWidth || 750) / 750);
       canvases.forEach(function (cv) {
         cv.style.width = '750px';
-        cv.style.transform = 'scale(' + k + ')';
+        cv.style.zoom = k;
+        cv.style.transform = 'none';
         cv.style.transformOrigin = 'top center';
-        var ph = cv.parentNode;
-        ph.style.width = Math.round(750 * k) + 'px';
-        ph.style.height = Math.round(cv.offsetHeight * k) + 'px';
-        ph.style.position = 'relative';
-        ph.style.margin = '0 auto';
+        cv.style.margin = '0 auto';
       });
     }
     window.addEventListener('load', fitCanvas);
