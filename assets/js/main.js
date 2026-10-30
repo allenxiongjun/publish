@@ -245,6 +245,27 @@
     });
   });
 
+  /* ---------------- Hide empty category filters ---------------- */
+  const hideEmptyFilters = () => {
+    const btns = $$(".filters button");
+    if (!btns.length) return;
+    const cats = new Set();
+    $$(".work").forEach((w) => {
+      (w.dataset.cats || w.dataset.cat || "").split(/\s+/).filter(Boolean).forEach((c) => cats.add(c));
+    });
+    btns.forEach((b) => {
+      const c = b.dataset.filter;
+      if (!c || c === "all") return;
+      b.style.display = cats.has(c) ? "" : "none";
+    });
+  };
+  hideEmptyFilters();
+  [300, 900, 1800].forEach((t) => setTimeout(hideEmptyFilters, t));
+  const gridEl = $(".work-grid");
+  if (gridEl && window.MutationObserver) {
+    new MutationObserver(hideEmptyFilters).observe(gridEl, { childList: true });
+  }
+
   /* ---------------- Marquee duplication ---------------- */
   $$(".marquee-track").forEach((t) => {
     t.innerHTML += t.innerHTML;
